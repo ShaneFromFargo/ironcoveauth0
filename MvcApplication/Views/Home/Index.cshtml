@@ -1,6 +1,6 @@
 ﻿@model PizzaAuth.Models.PizzaAuthUser
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Pizza Auth Home Page";
 }
 <div class="container">
     <div class="row">
@@ -33,7 +33,7 @@
                     }
                 }
             </div>
-
+            <!--Pizza Choices-->
             <div class="row">
                 <div class="col-lg-2">
                     <h3>Pepperoni and Sausage</h3>
@@ -118,49 +118,6 @@
         var _loggedIn = false;
         </script>
     }
-
-
-    <script>
-        $(document).ready(function () {
-            if (!_loggedIn)
-            {
-                $(".pizza-add").hide();
-            }
-
-            $(".order-submit").hide();
-            $(".pizza-add").click(function () {
-                var itemName = $(this).parent().find("h3").text();
-                var price = $(this).find(".price").text();
-                $("#shopping-table-body").append("<tr><td>" + itemName + "</td><td>" + price + "</td><td><button class=\"btn btn-xs btn-danger remove-from-cart\">Remove</button></td></tr>");
-                updatePrice();
-            });
-            $("#shopping-table").on("click", ".remove-from-cart", function () {
-                $(this).parent().parent().remove();
-                updatePrice();
-            });
-            $(".order-submit-logged-in").click(function () {
-                alert("Order succesfully placed!");
-            });
-            $(".order-submit-unverified").click(function () {
-                alert("You must verify your email before placing your order.");
-            })
-        });
-        function updatePrice()
-        {
-            var priceNumber = 0;
-            $('#shopping-table > tbody > tr').each(function () {
-                var price = $(':nth-child(2)', this).text().substr(1);
-                priceNumber = parseFloat(price) + priceNumber;
-            });
-            if (priceNumber != 0)
-            {
-                $(".order-submit").show();
-            }
-            else {
-                $(".order-submit").hide();
-            }
-            $("#total").text(priceNumber.toFixed(2));
-        }
-    </script>
+<script src="~/Scripts/order.js"></script>
 
 }
