@@ -37,6 +37,7 @@ namespace PizzaAuth
                 Domain = auth0Domain,
                 ClientId = auth0ClientId,
                 ClientSecret = auth0ClientSecret,
+                
 
                 //SaveIdToken = true,
                 //SaveAccessToken = true,
@@ -54,6 +55,13 @@ namespace PizzaAuth
                     }
                 }
             };
+
+      
+            //This adds the email to the custom claims
+            options.Scope.Add("email");
+
+            //For some reason this is not adding the gender to the claims. 
+            options.Scope.Add("gender");
             app.UseAuth0Authentication(options);
         }
     }

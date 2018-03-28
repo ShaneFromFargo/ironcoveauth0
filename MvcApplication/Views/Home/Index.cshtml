@@ -9,13 +9,13 @@
                 <h1>Pizza 42</h1>
                 <p class="lead">Welcome to our online pizza ordering system.</p>
 
-                @if (Model.IsAuthenticated)
+                @if (!Model.IsAuthenticated)
                 {
                     //Only allow users who are logged in to place an order
                     <p>*Please login to place an order</p>
                     //If the user is not logged in do not show the order buttons. There is probably a better way to do this using a partial view, but this is what I am implementing for now
                     <style>
-                        .price {
+                        .pizz-add {
                             display: none;
                         }
                     </style>
